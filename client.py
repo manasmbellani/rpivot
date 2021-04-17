@@ -486,8 +486,9 @@ def main():
                 time.sleep(5)
 
         try:
-            bc_sock.send(relay.banner)
+            bc_sock.send(relay.banner.encode())
             banner_reponse_rcv = bc_sock.recv(4096)
+            banner_reponse_rcv = banner_reponse_rcv.decode()
             if banner_reponse_rcv != relay.banner_response:
                 logger.error("Wrong banner response {0} from server. Retrying".format(repr(banner_reponse_rcv)))
                 bc_sock.close()
