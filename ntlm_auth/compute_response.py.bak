@@ -11,9 +11,6 @@
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library.  If not, see <http://www.gnu.org/licenses/> or <http://www.gnu.org/licenses/lgpl.txt>.
 
-from builtins import bytes
-from builtins import str
-from builtins import object
 import base64
 import calendar
 import hashlib
@@ -28,7 +25,7 @@ from ntlm_auth.constants import NegotiateFlags, AvFlags
 from ntlm_auth.gss_channel_bindings import GssChannelBindingsStruct
 from ntlm_auth.target_info import TargetInfo
 
-class ComputeResponse(object):
+class ComputeResponse():
     """
         Constructor for the response computations. This class will compute the various
         nt and lm challenge responses.
@@ -389,7 +386,7 @@ class ComputeResponse(object):
             cbt_value = bytearray.fromhex(channel_bindings_hash)
         except TypeError:
             # Work-around for Python 2.6 bug
-            cbt_value = bytearray.fromhex(str(channel_bindings_hash))
+            cbt_value = bytearray.fromhex(unicode(channel_bindings_hash))
 
         channel_bindings = bytes(cbt_value)
         return channel_bindings

@@ -15,9 +15,6 @@
 # License along with this library.  If not, see <http://www.gnu.org/licenses/> or <http://www.gnu.org/licenses/lgpl.txt>.
 
 from __future__ import division
-from builtins import chr
-from builtins import hex
-from builtins import object
 import six
 
 C = 0x1000000000
@@ -27,7 +24,7 @@ def norm(n):
     return n & 0xFFFFFFFF
 
 
-class U32(object):
+class U32:
     v = 0
 
     def __init__(self, value=0):
@@ -155,5 +152,5 @@ class U32(object):
     def __ne__(self, other):
         return self.v != other.v
 
-    def __bool__(self):
+    def __nonzero__(self):
         return norm(self.v)

@@ -17,7 +17,6 @@
     2.2 Message Syntax
     The signature field used in NTLM messages
 """
-from builtins import object
 NTLM_SIGNATURE = b'NTLMSSP\0'
 
 """

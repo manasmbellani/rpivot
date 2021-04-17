@@ -7,7 +7,6 @@
     Some minor changes such as the name of the AV Pairs and extra comments have been added.
 """
 
-from builtins import object
 import struct
 try:
     from collections import OrderedDict
@@ -60,7 +59,7 @@ class TargetInfo(object):
             del self.fields[TargetInfo.MSV_AV_EOL]
 
         data = b''
-        for i in list(self.fields.keys()):
+        for i in self.fields.keys():
             data += struct.pack('<HH', i, self[i][0])
             data += self[i][1]
 

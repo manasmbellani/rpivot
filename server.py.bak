@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
-from builtins import object
 import logging
 import logging.handlers
 import socket
@@ -16,7 +15,7 @@ import relay
 import threading
 import optparse
 
-class RelayServer(object):
+class RelayServer:
     def __init__(self, host, port, socket_with_server):
         self.input_list = []
         self.channel = {}
@@ -81,7 +80,7 @@ class RelayServer(object):
             time.sleep(relay.delay)
 
             try:
-                logger.debug("Active channels: {0}".format(list(self.channel.keys())))
+                logger.debug("Active channels: {0}".format(self.channel.keys()))
                 inputready, outputready, exceptready = select.select(self.input_list, [], [])
             except socket.error as xxx_todo_changeme3:
                 (code, msg) = xxx_todo_changeme3.args
@@ -311,7 +310,7 @@ class RelayServer(object):
         del self.channel[channel_id]
 
     def generate_new_channel_id(self):
-        channel_ids = list(self.channel.keys())
+        channel_ids = self.channel.keys()
         while True:
             rint = random.randint(1, 65535)
             if rint not in channel_ids:
